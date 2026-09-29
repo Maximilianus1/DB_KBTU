@@ -94,9 +94,11 @@ WHERE salary < 40000
 -- 15. DELETE with subquery
 DELETE FROM departments 
 WHERE dept_id NOT IN (
-    SELECT DISTINCT department FROM employees
-    WHERE department IS NOT NULL
-); -- just delete all rows in departments because dept_id is never is a string
+    SELECT DISTINCT d.dept_id 
+    FROM departments d
+    JOIN employees e ON e.department = d.dept_name
+    WHERE e.department IS NOT NULL
+); -- cannot be like in task WHERE SELECT DISTINCT department FROM employees WHERE department IS NOT NULL; types are not the same
 
 -- 16. DELETE with RETURNING clause
 DELETE FROM projects 
@@ -159,7 +161,8 @@ VALUES
 ('Joshua', 'Isa', 'Sales', 44000, '2026-01-03'),
 ('Jeremy', 'Jeke', 'Sales', 46000, '2026-01-04'),
 ('Gregor', 'Tode', 'HR', 48000, '2026-01-05')
-RETURNING emp_id; 
+RETURNING emp_id
+)
 
 -- Step 2 Update
 UPDATE employees
