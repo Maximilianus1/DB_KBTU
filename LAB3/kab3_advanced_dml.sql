@@ -1,6 +1,5 @@
 
-
-CREATE DATABASE advanced_Lab;
+-- 1. Create database and tablesCREATE DATABASE advanced_Lab;
 
 CREATE TABLE employees (
     emp_id SERIAL PRIMARY KEY,
